@@ -29,7 +29,7 @@ const httpsOptions = {
 app.use(express.static('public'));
 
   // Redirect HTTP to HTTPS,
-  app.use(redirectToHTTPS([/localhost:(\d{2})/], [], 301));
+  app.use(redirectToHTTPS([], [], 301));
 
 
 // init sqlite db
@@ -89,7 +89,7 @@ app.get('/getProducts', function(request, response) {
 //});
 
 const server = https.createServer(httpsOptions, app) 
-  .listen(port, () => {
+  .listen(port, '0.0.0.0', () => {
     console.log('server running at ' + port); 
   }); 
 

@@ -10,13 +10,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Welcome to Glitch!</title>
-    <meta name="description" content="A cool thing made with Glitch">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <title>Product Scanner</title>
+    <meta name="description" content="Product Scanner">
+    <link id="favicon" rel="icon" href="images/icons/icon-256x256.png" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="theme-color" content="#2F3BA2" />
+    <!-- refernce to manifest -->
+    <link rel="manifest" href="/manifest.json">
+  
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
     
@@ -24,6 +27,11 @@
     <script src="/client.js" defer></script>
   </head>
   <body>
+ <noscript>
+  <h1>Warning, no javascript available</h1>
+  <p>Dear user, this app requires javascript to work properly. Please install javascript to 
+  be able to enjoy using this appl </p>
+ </noscript>
     <header>
       <h1>
         Product list
@@ -55,14 +63,16 @@
         
       </ul>
     </section>
-    <footer>
-      Made with <a href="https://glitch.com">Glitch</a>!
-    </footer>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
-
+   
+    <script>
+    if('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((reg) => {
+            console.log('Service worker registered.', reg); 
+          })
+      })
+    }
+    </script>
   </body>
 </html>
