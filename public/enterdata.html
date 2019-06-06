@@ -1,0 +1,25 @@
+<html>
+<body>
+     <!-- import the webpage's client-side javascript file -->
+     <script src="/client.js" defer></script>
+    <form>
+        <input name="product_id" type="text" maxlength="100" placeholder="PartID" aria-labelledby="submit-dream">
+        <input name="product_key" type="text" maxlength="100" placeholder="Key" aria-labelledby="submit-dream">
+        <input name="product_value" type="text" maxlength="100" placeholder="Value" aria-labelledby="submit-dream">
+      
+        <button type="submit" id="submit-product">Submit Product</button>
+      </form>
+      
+      <section class="product">
+        <ul id="products"></ul>
+      </section>
+    </main>
+
+    <input type="button" value="get'em" onclick="getitemsi()"/>
+    <section>
+      <ul id="indexeddblist">
+        
+      </ul>
+    </section>
+</body>
+</html>

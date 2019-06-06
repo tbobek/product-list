@@ -23,8 +23,6 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- import the webpage's client-side javascript file -->
-    <script src="/client.js" defer></script>
   </head>
   <body>
  <noscript>
@@ -41,28 +39,9 @@
     <main>
        <h2>Scan product code</h2>
       <input type="button" value="Scan" onclick="location.href='/scan';"/>
-      <h2>Enter products things</h2>
+      <input type="button" value="Browse" onclick="location.href='/browse';"/>
+      <input type="button" value="Locate" onclick="location.href='/locate';"/>
       
-      
-      <form>
-        <input name="product_id" type="text" maxlength="100" placeholder="PartID" aria-labelledby="submit-dream">
-        <input name="product_key" type="text" maxlength="100" placeholder="Key" aria-labelledby="submit-dream">
-        <input name="product_value" type="text" maxlength="100" placeholder="Value" aria-labelledby="submit-dream">
-      
-        <button type="submit" id="submit-product">Submit Product</button>
-      </form>
-      
-      <section class="product">
-        <ul id="products"></ul>
-      </section>
-    </main>
-
-    <input type="button" value="get'em" onclick="getitemsi()"/>
-    <section>
-      <ul id="indexeddblist">
-        
-      </ul>
-    </section>
    
     <script>
     if('serviceWorker' in navigator) {

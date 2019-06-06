@@ -73,6 +73,20 @@ app.get('/offline', function(request, response) {
   response.sendFile(__dirname + '/public/offline.html');
 });
 
+app.get('/enterdata', function(request, response) {
+  response.sendFile(__dirname + '/public/enterdata.html');
+});
+
+app.get('/browse', function(request, response) {
+  response.sendFile(__dirname + '/public/browse.html');
+});
+
+app.get('/locate', function(request, response) {
+  response.sendFile(__dirname + '/public/locate.html');
+});
+
+
+
 // endpoint to get all the dreams in the database
 // currently this is the only endpoint, ie. adding dreams won't update the database
 // read the sqlite3 module docs and try to add your own! https://www.npmjs.com/package/sqlite3

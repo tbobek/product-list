@@ -25,7 +25,7 @@
     <b>Device has camera: </b>
     <span id="cam-has-camera"></span>
     <br>
-    <video muted playsinline autoplay id="qr-video"></video>
+    <video muted playsinline autoplay id="qr-video" width="400" height="300"></video>
 </div>
 <div>
     <select id="inversion-mode-select">
@@ -47,6 +47,14 @@
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
 
+<input type="button" value="Next" onclick="go_enterdata()"/>
+<script>
+function go_enterdata() {
+    var qr_code = document.getElementById("cam-qr-result").value; 
+    localStorage.setItem('product_id', qr_code); 
+    window.open('/enterdata'); 
+}
+</script>
 <script type="module">
     import QrScanner from "../qr-scanner.min.js";
     QrScanner.WORKER_PATH = '../qr-scanner-worker.min.js';
