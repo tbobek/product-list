@@ -12,7 +12,7 @@ const http = require('http');
 const https = require('https'); 
 var fs = require('fs');
 
-var app = express();
+var app = express(); 
 var httpApp = express(); 
 
 //const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
@@ -29,11 +29,7 @@ httpApp.get("*", function (req, res, next) {
     res.redirect("https://" + req.headers.host + "/" + req.path);
 });
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
- // Redirect all pages from HTTP to HTTPS
- //app.use(redirectToHTTPS([], [], 301));
  app.set('port', process.env.PORT || 44433);
  app.enable("trust proxy");
 
@@ -120,14 +116,16 @@ app.use('/images', express.static(__dirname + '/images'));
 
 
 
-http.createServer(httpApp).listen(httpApp.get('port'), function() {
+http.createServer(httpApp).listen(httpApp.get('port'), '0.0.0.0', function() {
   console.log('Express HTTP server listening on port ' + httpApp.get('port'));
 });
 
 
 https.createServer(httpsOptions, app) 
-  .listen(app.get('port'), () => {
+  .listen(app.get('port'), '0.0.0.0', () => {
     console.log('express https server running at ' + app.get('port')); 
   }); 
+
+// http->https redirect based on https://gist.github.com/ryanhanwu/5321302
 
 

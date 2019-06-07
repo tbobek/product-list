@@ -5,27 +5,15 @@
     <title>QR Scanner Demo</title>
 </head>
 <body>
-<style>
-    canvas {
-        display: none;
-    }
-    hr {
-        margin-top: 32px;
-    }
-    input[type="file"] {
-        display: block;
-        margin-bottom: 16px;
-    }
-    div {
-        margin-bottom: 16px;
-    }
-</style>
-<h1>Scan from WebCam:</h1>
+   <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+<h1>Scan Product QR-Code</h1>
 <div>
     <b>Device has camera: </b>
     <span id="cam-has-camera"></span>
     <br>
-    <video muted playsinline autoplay id="qr-video" width="400" height="300"></video>
+    <video muted playsinline autoplay id="qr-video" width="400" height="300"  halign="center"></video>
 </div>
 <div>
     <select id="inversion-mode-select">
@@ -35,6 +23,7 @@
     </select>
     <br>
 </div>
+<h2>Result</h2>
 <b>Detected QR code: </b>
 <span id="cam-qr-result">None</span>
 <br>
@@ -42,17 +31,22 @@
 <span id="cam-qr-result-timestamp"></span>
 <hr>
 
-<h1>Scan from File:</h1>
+<!--<h1>Scan from File:</h1>
 <input type="file" id="file-selector">
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
+-->
+<input type="button" value="Next" onclick="go_enterdata()"/> 
 
-<input type="button" value="Next" onclick="go_enterdata()"/>
+<input type="button" value="Home" onclick="go_enterdata()"/> 
+
+
 <script>
 function go_enterdata() {
-    var qr_code = document.getElementById("cam-qr-result").value; 
+    var qr_code = document.getElementById("cam-qr-result").innerHTML;     
     localStorage.setItem('product_id', qr_code); 
-    window.open('/enterdata'); 
+    console.log('qr-code is ' + qr_code); 
+    window.location.href = '/enterdata'; 
 }
 </script>
 <script type="module">
@@ -79,7 +73,7 @@ function go_enterdata() {
         scanner.setInversionMode(event.target.value);
     });
     // ####### File Scanning #######
-    fileSelector.addEventListener('change', event => {
+   /* fileSelector.addEventListener('change', event => {
         const file = fileSelector.files[0];
         if (!file) {
             return;
@@ -88,6 +82,7 @@ function go_enterdata() {
             .then(result => setResult(fileQrResult, result))
             .catch(e => setResult(fileQrResult, e || 'No QR code found.'));
     });
+    */
 </script>
 </body>
 </html>
