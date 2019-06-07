@@ -8,29 +8,42 @@
 // init project
 var express = require('express');
 var bodyParser = require('body-parser');
+const http = require('http'); 
 const https = require('https'); 
 var fs = require('fs');
 
 var app = express();
-const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+var httpApp = express(); 
+
+//const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const port = 3000; 
 
 const httpsOptions = {
   key: fs.readFileSync('./security/cert.key'),
   cert: fs.readFileSync('./security/cert.pem')
 }
 
+httpApp.set('port', process.env.PORT || 80);
+httpApp.get("*", function (req, res, next) {
+    res.redirect("https://" + req.headers.host + "/" + req.path);
+});
+
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
+
+ // Redirect all pages from HTTP to HTTPS
+ //app.use(redirectToHTTPS([], [], 301));
+ app.set('port', process.env.PORT || 44433);
+ app.enable("trust proxy");
+
+
+ 
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-  // Redirect HTTP to HTTPS,
-  app.use(redirectToHTTPS([], [], 301));
-
+ 
 
 // init sqlite db
 var dbFile = './.data/sqlite.db';
@@ -97,18 +110,24 @@ app.get('/getProducts', function(request, response) {
   });
 });
 
-// listen for requests :)
-//var listener = app.listen(port, function() {
-//  console.log('Your app is listening on port ' + listener.address().port);
-//});
-
-const server = https.createServer(httpsOptions, app) 
-  .listen(port, '0.0.0.0', () => {
-    console.log('server running at ' + port); 
-  }); 
 
 app.post('/insertProduct', function(request, response) {
   console.log("request: " + request); 
   //db.run(`INSERT INTO Dreams (dream, comment) VALUES (${request})`);  
 });
+
+app.use('/images', express.static(__dirname + '/images'));
+
+
+
+http.createServer(httpApp).listen(httpApp.get('port'), function() {
+  console.log('Express HTTP server listening on port ' + httpApp.get('port'));
+});
+
+
+https.createServer(httpsOptions, app) 
+  .listen(app.get('port'), () => {
+    console.log('express https server running at ' + app.get('port')); 
+  }); 
+
 
