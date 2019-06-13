@@ -36,17 +36,20 @@
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
 -->
-<input type="button" value="Next" onclick="go_enterdata()"/> 
+<input type="button" value="Next" onclick="go_result()"/> 
 
-<input type="button" value="Home" onclick="go_enterdata()"/> 
+<input type="button" value="Home" onclick="go_home()"/> 
 
 
 <script>
-function go_enterdata() {
+function go_home() {
+    window.location.href = '/home'; 
+}
+function go_result() {
     var qr_code = document.getElementById("cam-qr-result").innerHTML;     
     localStorage.setItem('product_id', qr_code); 
     console.log('qr-code is ' + qr_code); 
-    window.location.href = '/enterdata'; 
+    window.location.href = '/result'; 
 }
 </script>
 <script type="module">

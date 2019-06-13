@@ -12,6 +12,7 @@ const http = require('http');
 const https = require('https'); 
 var fs = require('fs');
 
+
 var app = express(); 
 var httpApp = express(); 
 
@@ -46,6 +47,7 @@ var dbFile = './.data/sqlite.db';
 var exists = fs.existsSync(dbFile);
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(dbFile);
+
 
 // if ./.data/sqlite.db does not exist, create it, otherwise print records to console
 db.serialize(function(){
@@ -86,6 +88,10 @@ app.get('/enterdata', function(request, response) {
   response.sendFile(__dirname + '/public/enterdata.html');
 });
 
+app.get('/result', function(request, response) {
+  response.sendFile(__dirname + '/public/result.html');
+});
+
 app.get('/browse', function(request, response) {
   response.sendFile(__dirname + '/public/browse.html');
 });
@@ -94,6 +100,33 @@ app.get('/locate', function(request, response) {
   response.sendFile(__dirname + '/public/locate.html');
 });
 
+app.get('/testresult', function(request, response) {
+  response.sendFile(__dirname + '/public/testresult.html');
+});
+
+app.post('/testresult', function(request, response) {
+   console.log("request: " + request); 
+
+//   const db = request.result;
+//   const tx = db.transaction("products", "readwrite");
+//   const productsStore = tx.objectStore("products");
+  
+//   // Add data
+//   productsStore.add({id: "123", key: "test", value: "bad"});
+//   productsStore.add({id: "234", key: "toast", value: "good"});
+//   // TODO insert data into DB 
+//   const rq = window.indexedDB.open("database", 1);
+//   rq.onsuccess = () => {
+//     const db = rq.result;
+//     const transaction = db.transaction("products", "readwrite" );
+//     const productStore = transaction.objectStore("products");
+    
+//     // Add data
+//     productStore.add(
+//         { id: pid, key: pkey, value: pvalue }
+//     );
+//   }
+});
 
 
 // endpoint to get all the dreams in the database
@@ -108,21 +141,23 @@ app.get('/getProducts', function(request, response) {
 
 
 app.post('/insertProduct', function(request, response) {
-  console.log("request: " + request); 
+  console.log("request: " + (request)); 
   //db.run(`INSERT INTO Dreams (dream, comment) VALUES (${request})`);  
+
+  
 });
 
 app.use('/images', express.static(__dirname + '/images'));
 
 
 
-http.createServer(httpApp).listen(httpApp.get('port'), '0.0.0.0', function() {
+http.createServer(httpApp).listen(httpApp.get('port'), function() {
   console.log('Express HTTP server listening on port ' + httpApp.get('port'));
 });
 
 
 https.createServer(httpsOptions, app) 
-  .listen(app.get('port'), '0.0.0.0', () => {
+  .listen(app.get('port'), () => {
     console.log('express https server running at ' + app.get('port')); 
   }); 
 

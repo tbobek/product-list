@@ -7,29 +7,22 @@
      
     <form>
         <input id="product_id" name="product_id" type="text" maxlength="100" placeholder="PartID" 
-         aria-labelledby="submit-dream">
-        <input name="product_key" type="text" maxlength="100" placeholder="Key" aria-labelledby="submit-dream">
-        <input name="product_value" type="text" maxlength="100" placeholder="Value" aria-labelledby="submit-dream">
+         aria-labelledby="submit-product">
+        <input name="product_key" type="text" maxlength="100" placeholder="Key" aria-labelledby="submit-product">
+        <input name="product_value" type="text" maxlength="100" placeholder="Value" aria-labelledby="submit-product">
       
         <button type="submit" id="submit-product">Submit Product</button>
       </form>
-      
+
       <section class="product">
         <ul id="products"></ul>
       </section>
     </main>
 
     <!--<input type="button" value="get'em" onclick="getitemsi()"/>-->
-    <script>
-     var partId = document.getElementsByName("product_id")[0]; // "nothing"; 
-     console.log("partId = " + partId); 
-     var qrCodeResult = localStorage.getItem('product_id'); 
-     //var qrCodeResult = "tee"; 
-     partId.value = qrCodeResult; 
-     </script>
+    
     <section>
       <ul id="indexeddblist">
-        
       </ul>
     </section>
 </body>

@@ -25,6 +25,7 @@
     
   </head>
   <body>
+  <script src="client_start.js"></script>
  <noscript>
   <h1>Warning, no javascript available</h1>
   <p>Dear user, this app requires javascript to work properly. Please install javascript to 
@@ -41,8 +42,7 @@
       <input type="button" value="Scan" onclick="location.href='/scan';"/>
       <input type="button" value="Browse" onclick="location.href='/browse';"/>
       <input type="button" value="Locate" onclick="location.href='/locate';"/>
-      
-   
+   </main>
     <script>
     if('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
