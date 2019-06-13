@@ -13,24 +13,22 @@ testResultForm.onsubmit = function (event) {
     console.log("result: " + result); 
     
     // insert into indexedDb
-    // get dream value and add it to the list
-    //products.push([pid, pkey, pvalue]);
-    //appendNewProduct(pid, pkey, pvalue);
 
     const request = window.indexedDB.open("database", 1);
     request.onsuccess = () => {
         const db = request.result;
         const transaction = db.transaction("products", "readwrite");
         const productStore = transaction.objectStore("products");
-
+        console.log("productstore: " + productStore); 
         // Add data
         productStore.add(
             { id: qrCodeResult, key: "rating", value: result }
         );
-
+ 
         // Clean up: close connection
         transaction.oncomplete = () => {
             db.close();
+            console.log("complete"); 
         };
         console.log("data added");
     };
