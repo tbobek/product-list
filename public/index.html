@@ -22,7 +22,8 @@
   
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
   <script src="client_start.js"></script>
@@ -39,9 +40,11 @@
 
     <main>
        <h2>Scan product code</h2>
-      <input type="button" value="Scan" onclick="location.href='/scan';"/>
-      <input type="button" value="Browse" onclick="location.href='/browse';"/>
-      <input type="button" value="Locate" onclick="location.href='/locate';"/>
+       <div class='col-xs-3'>
+        <button class="btn btn-default btn-block btn-primary" style="width:100%" onclick="location.href='/scan';">Scan</button>
+        <button class="btn btn-default btn-block btn-primary" style="width:100%" onclick="location.href='/browse';">Browse</button>
+        <button class="btn btn-default btn-block btn-primary" style="width:100%" onclick="location.href='/locate';">Locate</button>
+    </div>
    </main>
     <script>
     if('serviceWorker' in navigator) {

@@ -14,7 +14,7 @@
 <body>
 <h1>Test Result</h1>
 <form action="/testresult" method='post'>
-    <select name="rating" id="rating" width="400">
+    <select name="rating" id="rating"  style="width:100%">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -22,11 +22,13 @@
         <option value="5">5</option>
     </select>
     <br>
-    <button class="btn btn-primary" type="submit" id="submit-product">Submit Product</button>
+    <div id="feedback"></div>
+    <button class="btn btn-default btn-block btn-warning" type="submit" id="submit-product" style="width:100%">Submit Product</button>
 </form>
 
-
-
+<div class=""></div>
+<button class="btn btn-default btn-block btn-primary" onclick="window.location.href = '/'" style="width:100%">Home </button>
+</div>
     <script src="client_testresult.js">
     </script>
 </body>

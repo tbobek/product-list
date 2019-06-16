@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>QR Scanner Demo</title>
+    <title>QR Scanner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
    <!-- import the webpage's stylesheet -->
@@ -13,7 +16,7 @@
     <b>Device has camera: </b>
     <span id="cam-has-camera"></span>
     <br>
-    <video muted playsinline autoplay id="qr-video" width="400" height="300"  halign="center"></video>
+    <video muted playsinline autoplay id="qr-video" style="width:100%"  halign="center"></video>
 </div>
 <div>
     <select id="inversion-mode-select">
@@ -36,15 +39,12 @@
 <b>Detected QR code: </b>
 <span id="file-qr-result">None</span>
 -->
-<input type="button" value="Next" onclick="go_result()"/> 
-
-<input type="button" value="Home" onclick="go_home()"/> 
-
+<div class='col-xs-3'>
+<button class="btn btn-default btn-block btn-primary"   onclick="go_result()" style="width:100%">Result</button>
+<button class="btn btn-default btn-block btn-primary"   onclick="window.location.href = '/home'" style="width:100%">Home</button>
+</div>
 
 <script>
-function go_home() {
-    window.location.href = '/home'; 
-}
 function go_result() {
     var qr_code = document.getElementById("cam-qr-result").innerHTML;     
     localStorage.setItem('product_id', qr_code); 

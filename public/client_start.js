@@ -4,7 +4,7 @@ requestI.onupgradeneeded = event => {
   const db = event.target.result;
   
   const productStore = db.createObjectStore("products", { keyPath: "id" }); 
-  productStore.createIndex("key", "key", {unique: true});    
+  productStore.createIndex("key", "key", {unique: false});    
 }; 
 
 requestI.onsuccess = () => {

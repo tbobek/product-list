@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Scan Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -13,11 +15,12 @@
     <h1>Product Code</h1>
     <input type="text" id="qr-result" name="qr-result" value="QR-Code" onclick="location.href='/enterdata';" />
 
-    <input type="button" value="Show Data" onclick="window.location.href = '/productdata'" />
-    <input type="button" value="Test Result" onclick="window.location.href = '/testresult'" />
-    <input type="button" value="Comment" onclick="window.location.href = '/enterdata'" />
-    <input type="button" value="Home" onclick="window.location.href = '/'" />
-
+    <div class='col-xs-3'>
+        <button class="btn btn-default btn-block btn-primary" onclick="window.location.href = '/productdata'" >Show Data</button>
+        <button class="btn btn-default btn-block btn-primary" onclick="window.location.href = '/testresult'" >Test Result</button>
+        <button class="btn btn-default btn-block btn-primary" onclick="window.location.href = '/enterdata'" >Comment</button>
+        <button class="btn btn-default btn-block btn-primary" onclick="window.location.href = '/'">Home</button>
+    </div>
     <script>
         var partId = document.getElementsByName("qr-result")[0];
         // console.log("partId = " + partId); 
